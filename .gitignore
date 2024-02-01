@@ -21,7 +21,4 @@ yarn-debug.log*
 yarn-error.log*
 
 .env
-/public/Assets/works
 /public/Assets/portrait.jpg
-
-data.json

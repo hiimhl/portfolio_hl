@@ -1,0 +1,181 @@
+{
+  "resume": {
+    "academy": [
+      {
+        "title": "포트폴리오 웹사이트 클론코딩",
+        "description": "HTML, CSS의 개념과 시멘틱 태그를 사용하여 웹사이트의 구조를 구축, SEO 설정, CSS Grid, Flex 등을 사용하여 반응형 CSS 스타일링. \n깃과 깃허브의 개념과 깃허브를 이용하여 프로젝트를 관리하는 방법, 사이트 배포.",
+        "period": "2023.05 ~ 2023.06",
+        "academyName": "드림코딩"
+      },
+      {
+        "title": "비개발자를 위한, 웹개발 종합반",
+        "description": "JavaScript, jQuery, API 등 기본 언어와 개념을 익히고 웹 사이트를 제작 및 배포",
+        "period": "2021.12 ~ 2022.01",
+        "academyName": "팀스파르타주식회사"
+      },
+      {
+        "title": "디지털디자인향상과정(웹표준및웹접근성)",
+        "description": "프로토타입 제작을 바탕으로 한 정보구조 및 설계를 통해 사용성과 매체의 특성을 반영하여 심미적으로 디자인하는 능력을 함양할 수 있고, 웹표준 및 웹접근성 능력을 향상시킬 수 있다",
+        "period": "2017.03 ~ 2017.04",
+        "academyName": "그린컴퓨터아카데미 부산"
+      }
+    ],
+    "license": [
+      {
+        "title": "GTQ 1급",
+        "date": "2020.06",
+        "name": "한국생산성본부"
+      },
+      {
+        "title": "GTQ 일러스트 1급",
+        "date": "2020.06",
+        "name": "한국생산성본부"
+      }
+    ],
+    "techStack": [
+      {
+        "name": "HTML / CSS",
+        "description": "시멘틱 마크업, 반응형 웹, Flexbox, Grid, SCSS"
+      },
+      {
+        "name": "JavaScript",
+        "description": "ES6, 비동기 프로그래밍, asncy/await"
+      },
+      {
+        "name": "React js",
+        "description": "컴포넌트 기반 개발, SPA 개발, Router, Styled-components, Redux, Recoil"
+      },
+      {
+        "name": "TypeScript",
+        "description": "interface 타입 활용, 타입 안정성 강화"
+      },
+      {
+        "name": "Figma, photoShop 및 디자인 툴",
+        "description": "UI/UX 디자인, 컴포넌트 기반 디자인"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "title": "일상 가계부",
+      "id": "diary",
+      "type": "react",
+      "description": "일상을 기록하는 다이어리 어플. 일상에서 생기는 기록들을 남길 수 있는 어플로, 가계부, 할일, 일기를 작성하고 저장할 수 있습니다. 로그인을 통해 사용자의 데이터를 저장할 수 있으며, 사용자가 테마 및 달력 형태를 선택할 수 있습니다.\n",
+      "team": "개인프로젝트",
+      "techStack": "React, TypeScript, Firebase, Redux, Styled-components",
+      "images": [
+        "diary_m",
+        "diary_today",
+        "diary_month",
+        "diary_login",
+        "diary_list",
+        "diary_filter",
+        "diary_add"
+      ],
+      "github": "https://github.com/hiimhl/budget_diary",
+      "demo": "https://hiimhl.github.io/budget_diary/"
+    },
+    {
+      "title": "Mikaya clone site",
+      "id": "mikaya",
+      "type": "react",
+      "description": "일상을 기록하는 다이어리 어플. 일상에서 생기는 기록들을 남길 수 있는 어플로, 가계부, 할일, 일기를 작성하고 저장할 수 있습니다. 로그인을 통해 사용자의 데이터를 저장할 수 있으며, 사용자가 테마 및 달력 형태를 선택할 수 있습니다.\n",
+      "team": "개인프로젝트",
+      "techStack": "HTML, CSS, SASS, JavaScript",
+      "images": [
+        "diary_m",
+        "diary_today",
+        "diary_month",
+        "diary_login",
+        "diary_list",
+        "diary_filter",
+        "diary_add"
+      ],
+      "github": "https://github.com/hiimhl/budget_diary",
+      "demo": "https://hiimhl.github.io/budget_diary/"
+    },
+    {
+      "title": "Nomflix-Clone",
+      "id": "nomflix",
+      "type": "react",
+      "description": "넷플릭스를 클론코딩한 사이트로 영화 API를 사용하여 현재 상영중인 영화와 상영 예정인 영화 등 여러 분야의 영상들의 정보 확인할 수 있습니다. 검색창을 통하여 원하는 영화와 드라마를 검색할 수 있습니다.",
+      "team": "개인프로젝트",
+      "techStack": "HTML, CSS, React, TypeScript, Recoil, Styled-components",
+      "images": ["nomflix", "nomflix_search", "nomflix_card"],
+      "github": "https://github.com/hiimhl/Nomflix-Clone",
+      "demo": "https://hiimhl.github.io/Nomflix-Clone/"
+    },
+    {
+      "title": "_World",
+      "id": "world",
+      "type": "react",
+      "description": "세계 각국의 나라와 그 나라의 정보를 볼 수 있는 사이트입니다. \n 검색창을 통해 원하는 나라를 검색하고, 지역별로 나누어 찾을 수 있으며, 상세 페이지에서 각 나라의 언어, 문자, 인구, 수도 등의 정보를 알 수 있습니다. ",
+      "team": "개인프로젝트",
+      "techStack": "HTML, CSS, TypeScript, Recoil",
+      "images": ["world_m", "world", "world_dark", "world_detail"],
+      "github": "https://github.com/hiimhl/rest-countries-api",
+      "demo": "https://hiimhl.github.io/rest-countries-api/"
+    },
+    {
+      "title": "Airbnb 클론 사이트",
+      "id": "airbnb",
+      "type": "css",
+      "description": "Airbnb 사이트를 클론 코딩한 웹 사이트로 Sass 연습을 목적으로 제작하였습니다.",
+      "team": "개인프로젝트",
+      "techStack": "HTML, CSS, SASS, JavaScript",
+      "images": ["airbnb_m", "airbnb"],
+      "github": "https://github.com/hiimhl/Airbnb_clone",
+      "demo": "https://hiimhl.github.io/Airbnb_clone/"
+    },
+    {
+      "title": "쇼핑몰 상품 상세페이지",
+      "id": "product",
+      "type": "css",
+      "description": "쇼핑몰의 상품 상세페이지를 간단하게 구현한 페이지로, 바닐라 JS 연습을 목적으로 제작하였습니다. 팝업창, 클릭 버튼 등의 간단한 기능을 구현하였습니다. ",
+      "team": "개인프로젝트",
+      "techStack": "HTML, CSS, JavaScript",
+      "images": ["product_m", "product", "product_overlay", "product_add"],
+      "github": "https://github.com/hiimhl/Ecommerce_product_page",
+      "demo": "https://hiimhl.github.io/Ecommerce_product_page/"
+    },
+    {
+      "title": "Easybank 반응형 웹 페이지",
+      "id": "easy",
+      "type": "css",
+      "description": "Media Query를 사용하여 반응형 웹 페이지 구현을 목적으로 제작하였습니다.",
+      "team": "개인프로젝트",
+      "techStack": "HTML, CSS",
+      "images": ["easy_m", "easy", "easy_footer"],
+      "github": "https://github.com/hiimhl/Easybank_landing_page",
+      "demo": "https://hiimhl.github.io/Easybank_landing_page/"
+    },
+    {
+      "title": "Social 반응형 테마 페이지",
+      "id": "social",
+      "type": "css",
+      "description": "토글 버튼을 사용하여 다크 테마 적용과 반응형 웹 페이지 구현을 목적으로 제작하였습니다.",
+      "team": "개인프로젝트",
+      "techStack": "HTML, CSS",
+      "images": ["social_m", "social", "social_dark"],
+      "github": "https://github.com/hiimhl/Social-media",
+      "demo": "https://hiimhl.github.io/Social-media/"
+    },
+    {
+      "title": "Sunny 반응형 웹 페이지",
+      "id": "sunny",
+      "type": "css",
+      "description": "Media Query를 사용하여 반응형 웹 페이지 구현을 목적으로 제작하였습니다.",
+      "team": "개인프로젝트",
+      "techStack": "HTML, CSS, JavaScript",
+      "images": [
+        "sunny_m",
+        "sunny",
+        "sunny_client",
+        "sunny_footer",
+        "sunny_mobile"
+      ],
+      "github": "https://github.com/hiimhl/sunnyside-page",
+      "demo": "https://hiimhl.github.io/sunnyside-page/"
+    }
+  ]
+}
