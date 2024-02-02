@@ -4,7 +4,8 @@ import { GlobalStyle } from "./style/global-style";
 import { darkTheme, lightTheme } from "./style/theme";
 import { useRecoilValue } from "recoil";
 import { userTheme } from "./data/atom";
-import Router from "./routes/Router";
+import Header from "./components/Header";
+import Home from "./components/Home";
 
 function App() {
   const theme = useRecoilValue(userTheme);
@@ -18,7 +19,8 @@ function App() {
   return (
     <ThemeProvider theme={currTheme}>
       <GlobalStyle />
-      <Router />
+      <Header />
+      <Home />
     </ThemeProvider>
   );
 }

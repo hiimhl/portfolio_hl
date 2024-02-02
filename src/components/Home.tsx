@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { laptop, fontFamily, tablet } from "../style/styles";
-import Main from "../components/Main";
-import About from "../components/About";
-import Project from "../components/Project";
-import Contact from "../components/Contact";
+import Main from "./Main";
+import About from "./About";
+import Project from "./Project";
+import Contact from "./Contact";
 
 // Style
 const Wrapper = styled.div`
