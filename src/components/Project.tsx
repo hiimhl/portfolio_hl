@@ -16,8 +16,10 @@ import data from "../data/data.json";
 import ProjectItem from "./ProjectItem";
 import { IProject } from "../data/data_type";
 import ProjectModal from "./ProjectModal";
-import { PathMatch, useMatch, useNavigate } from "react-router-dom";
+// import { PathMatch, useMatch, useNavigate } from "react-router-dom";
 import { SliderBtn } from "./UI/SliderBtn";
+import { useRecoilState } from "recoil";
+import { modalState, modalToggleState } from "../data/atom";
 
 // Style
 const Wrapper = styled.section`
@@ -26,6 +28,7 @@ const Wrapper = styled.section`
   width: 100%;
   height: 100vh;
   background: ${(p) => p.theme.gradient};
+  display: relative;
 
   & > div {
     padding-top: 7vh;
@@ -167,13 +170,25 @@ function Project() {
   const [grid, setGrid] = useState(3);
   const [cardNum, setCardNum] = useState(0);
   const [filteredData, setFilteredData] = useState<IProject[]>([]);
-  const [openModal, setOpenModal] = useState(false);
-  const [modalData, setModalData] = useState<IProject | null>(null);
+  const [openModal, setOpenModal] = useRecoilState(modalToggleState);
+  const [modalData, setModalData] = useRecoilState(modalState);
 
-  const navigation = useNavigate();
+  const [scrollY, setScrollY] = useState(0);
 
-  //Router Match - to find the match project
-  const detailMatch: PathMatch<string> | null = useMatch(`/:project`);
+  useEffect(() => {
+    const handleScroll = () => {
+      // setScrollY(window.scrollY);
+      const newScroll = 500 + window.scrollY;
+      setScrollY(newScroll);
+      console.log(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const onTypeBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     const { id } = e.currentTarget;
@@ -216,20 +231,8 @@ function Project() {
     }
   }, [isReact, cardNum, grid]);
 
-  // Open and set Modal
-  useEffect(() => {
-    if (detailMatch?.params.project) {
-      const data = projects.find(
-        (item: IProject) => item.id === detailMatch.params.project
-      );
-      setModalData(data as IProject);
-    } else {
-      setOpenModal(false);
-    }
-  }, [detailMatch]);
-
-  const onProjectClick = (path: string) => {
-    navigation(`/${path}`);
+  const onProjectClick = (id: string) => {
+    setModalData(id);
     setOpenModal(true);
   };
 
@@ -244,6 +247,7 @@ function Project() {
 
   return (
     <Wrapper id="project">
+      {openModal && <ProjectModal />}
       <div>
         <h1>Projects</h1>
         <Card btncolor={isReact}>
@@ -270,7 +274,7 @@ function Project() {
             <SliderBtn isLeft={false} onClick={onNext} />
           </section>
 
-          {openModal && <ProjectModal item={modalData} isOpen={openModal} />}
+          {/* {openModal && <ProjectModal />} */}
         </Card>
       </div>
     </Wrapper>

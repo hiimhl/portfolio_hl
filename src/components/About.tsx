@@ -14,6 +14,7 @@ import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { imgUrl } from "../utill";
+import { infoData } from "../data/testData";
 
 // Style
 export const Section = styled.section`
@@ -137,7 +138,7 @@ const EducationCard = styled.ul`
 `;
 
 // Data
-const education = data.resume.education;
+const education = infoData.education;
 const academy = data.resume.academy;
 const academySlice = academy.slice(0, 3);
 const license = data.resume.license;

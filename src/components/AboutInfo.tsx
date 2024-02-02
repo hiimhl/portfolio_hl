@@ -21,6 +21,7 @@ import {
 import { imgUrl } from "../utill";
 import { NextBtn } from "./UI/NextBtn";
 import { animateScroll } from "react-scroll";
+import { infoData } from "../data/testData";
 
 // Style
 const Content = styled(motion.article)`
@@ -170,8 +171,6 @@ const ScrollBtn = styled.div`
     display: none;
   }
 `;
-
-const infoData = data.resume;
 
 function AboutInfo() {
   return (

@@ -1,7 +1,7 @@
 // Item card in the Project list
 
 import React, { useState, useEffect } from "react";
-import styled, { useTheme } from "styled-components";
+import styled from "styled-components";
 import {
   fontFamily,
   fontSize,
@@ -96,7 +96,6 @@ function ProjectItem({ item, goDetail, index }: IProps) {
     const type = item.type === "react" ? "react" : "";
     setIsBorderColor(type);
   }, [item.type]);
-  const theme = useTheme();
 
   return (
     <AnimatePresence>

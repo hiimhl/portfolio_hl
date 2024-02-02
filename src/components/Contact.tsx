@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { fontSize, space } from "../style/styles";
+import { infoData } from "../data/testData";
 
 // Style
 const Wrap = styled.footer`
@@ -33,7 +34,7 @@ const Wrap = styled.footer`
   }
 `;
 
-const info = data.resume.personalInfo;
+const info = infoData.personalInfo;
 
 function Contact() {
   return (
