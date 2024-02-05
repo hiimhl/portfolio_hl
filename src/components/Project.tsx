@@ -16,9 +16,8 @@ import data from "../data/data.json";
 import ProjectItem from "./ProjectItem";
 import { IProject } from "../data/data_type";
 import ProjectModal from "./ProjectModal";
-// import { PathMatch, useMatch, useNavigate } from "react-router-dom";
 import { SliderBtn } from "./UI/SliderBtn";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { modalState, modalToggleState } from "../data/atom";
 
 // Style
@@ -74,35 +73,57 @@ const Card = styled(motion.div)<{ btncolor: string }>`
       p.btncolor === "react" ? pointColor.orange : p.theme.gray};
   }
 
-  /* Filter buttons */
-  & > div {
-    text-align: right;
-    width: auto;
-    height: auto;
-    margin: ${space.small};
-    button {
-      font-size: ${fontSize.default};
-      margin-right: ${space.small};
-      color: ${(p) => p.theme.gray};
-    }
-  }
-  section {
-    height: 100%;
-    /* Prev, Next Button */
-    button {
-      position: absolute;
-      top: 51%;
-    }
-    button:first-child {
-      transform: translateX(-0.5em);
-    }
-    button:last-child {
-      right: 0.25em;
-    }
+  @media (max-width: ${laptop}) {
+    height: 67%;
+    min-height: 550px;
   }
 
-  /* project list */
-  section > ul {
+  @media (max-width: ${tabletL}) {
+    height: 85%;
+  }
+
+  @media (max-width: ${mobile}) {
+    height: 90vh;
+    max-height: 680px;
+  }
+`;
+
+const FilterBtns = styled.div`
+  text-align: right;
+  width: auto;
+  height: auto;
+  margin: ${space.small};
+
+  button {
+    font-size: ${fontSize.default};
+    margin-right: ${space.small};
+    color: ${(p) => p.theme.gray};
+  }
+
+  @media (max-width: ${laptop}) {
+    font-size: ${fontSize.small};
+  }
+
+  @media (max-width: ${tabletL}) {
+    font-size: ${fontSize.default};
+  }
+`;
+
+const CardList = styled.section`
+  height: 100%;
+  /* Prev, Next Button */
+  button {
+    position: absolute;
+    top: 51%;
+  }
+  button:first-child {
+    transform: translateX(-0.5em);
+  }
+  button:last-child {
+    right: 0.25em;
+  }
+
+  ul {
     margin-top: ${space.default};
     height: 90%;
     padding: ${space.medium} ${space.large};
@@ -111,52 +132,24 @@ const Card = styled(motion.div)<{ btncolor: string }>`
     gap: ${space.large};
   }
 
-  @media (max-width: ${laptop}) {
-    height: 67%;
-    min-height: 550px;
-    /* Filter buttons */
-    & > div {
-      font-size: ${fontSize.small};
-    }
-  }
   @media (max-width: ${tabletL}) {
-    height: 85%;
-    section > button {
+    button {
       top: 48%;
     }
-    /* project list */
-    section > ul {
+    ul {
       height: 90%;
       grid-template-columns: repeat(2, 1fr);
     }
-
-    /* Filter buttons */
-    & > div {
-      font-size: ${fontSize.mobileTitle};
-    }
   }
+
   @media (max-width: ${tablet}) {
-    /* project list */
-    section > ul {
+    ul {
       display: flex;
     }
   }
 
   @media (max-width: ${mobile}) {
-    height: 90vh;
-    max-height: 680px;
-    /* project list */
-    section > ul {
-      height: auto;
-      display: flex;
-    }
-    /* Filter buttons */
-    & > div {
-      font-size: ${fontSize.default};
-    }
-
-    /* project list */
-    section > ul {
+    ul {
       height: 85%;
       width: 100%;
     }
@@ -171,24 +164,7 @@ function Project() {
   const [cardNum, setCardNum] = useState(0);
   const [filteredData, setFilteredData] = useState<IProject[]>([]);
   const [openModal, setOpenModal] = useRecoilState(modalToggleState);
-  const [modalData, setModalData] = useRecoilState(modalState);
-
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      // setScrollY(window.scrollY);
-      const newScroll = 500 + window.scrollY;
-      setScrollY(newScroll);
-      console.log(window.scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const setModalData = useSetRecoilState(modalState);
 
   const onTypeBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     const { id } = e.currentTarget;
@@ -251,15 +227,15 @@ function Project() {
       <div>
         <h1>Projects</h1>
         <Card btncolor={isReact}>
-          <div>
+          <FilterBtns>
             <button id="react" onClick={onTypeBtn}>
               React
             </button>
             <button id="css" onClick={onTypeBtn}>
               HTML/CSS
             </button>
-          </div>
-          <section>
+          </FilterBtns>
+          <CardList>
             <SliderBtn isLeft={true} onClick={onPrev} />
             <ul>
               {filteredData.map((item, index) => (
@@ -272,9 +248,7 @@ function Project() {
               ))}
             </ul>
             <SliderBtn isLeft={false} onClick={onNext} />
-          </section>
-
-          {/* {openModal && <ProjectModal />} */}
+          </CardList>
         </Card>
       </div>
     </Wrapper>

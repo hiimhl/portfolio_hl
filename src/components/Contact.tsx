@@ -4,12 +4,14 @@ import data from "../data/data.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
-import { fontSize, space } from "../style/styles";
+import { fontSize, laptop, space } from "../style/styles";
 import { infoData } from "../data/testData";
+import { imgUrl } from "../utill";
 
 // Style
 const Wrap = styled.footer`
-  background-image: url("Assets/cloud.png"), ${(p) => p.theme.contact}; //image, color
+  background-image: ${"url(" + imgUrl + "/cloud.png)"},
+    ${(p) => p.theme.contact}; //image, color
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -32,9 +34,18 @@ const Wrap = styled.footer`
   a {
     font-size: ${space.medium};
   }
+
+  @media (max-width: ${laptop}) {
+    height: 20vh;
+  }
 `;
 
-const info = infoData.personalInfo;
+// const info = infoData.personalInfo;
+const info = {
+  phoneNum: "010-1230-4567",
+  email: "test@test.com",
+  github: "#",
+};
 
 function Contact() {
   return (

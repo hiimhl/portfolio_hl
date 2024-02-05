@@ -1,12 +1,12 @@
 import { DefaultTheme } from "styled-components";
 
 export const darkTheme: DefaultTheme = {
-  backgroundColor: "#11171B",
+  backgroundColor: "#141414",
   fontColor: "#fffffc",
   gray: "#afafaf",
   cardColor: "rgba(255, 255, 255, 0.05)",
   boxShadow: "0px 3px 15px 1px rgba(0, 0, 0, 0.5)",
-  gradient: "linear-gradient(0, rgb(10, 76, 105), rgb(17, 23, 27));",
+  gradient: "linear-gradient(0, rgb(10, 76, 105), rgb(20, 20, 20));",
   contact: "linear-gradient(0, rgb(12, 35, 50), rgb(10, 76, 105));",
   btnColor: "#393939",
   logo: "/logo_text.png",

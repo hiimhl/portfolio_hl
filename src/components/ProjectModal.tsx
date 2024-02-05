@@ -23,15 +23,27 @@ import { modalState, modalToggleState } from "../data/atom";
 import { IProject } from "../data/data_type";
 
 // Style
+const Overlay = styled.article`
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100vw;
+  height: 100%;
+  z-index: 100;
+`;
+
 const Wrap = styled.article`
   width: 95vw;
-  height: 90%;
+  height: 85%;
   margin: auto;
-  position: absolute;
+  position: fixed;
   border-radius: ${space.micro};
-  transform: translate(-50%, 15%);
+  top: 53%;
   left: 50%;
-  z-index: 100;
+  transform: translate(-50%, -50%);
   background-color: ${(p) => p.theme.backgroundColor};
   display: inline-block;
   font-size: ${fontSize.default};
@@ -40,7 +52,7 @@ const Wrap = styled.article`
 
 const Card = styled.div`
   margin: auto;
-  width: 80%;
+  width: 90%;
   height: 95%;
   overflow-y: scroll;
   -ms-overflow-style: none;
@@ -48,65 +60,26 @@ const Card = styled.div`
     display: none;
   }
 
-  h4 {
-    font-weight: 600;
-    font-size: ${fontSize.medium};
-    margin-top: ${space.small};
-    margin-bottom: ${space.micro};
-    letter-spacing: 1.5px;
-  }
-  span {
-    font-size: ${fontSize.small};
-    color: ${(p) => p.theme.gray};
-  }
-  p {
-    line-height: 1.3;
-    margin-top: ${space.small};
-    white-space: pre-line;
-  }
-
   @media (max-width: ${tablet}) {
-    width: 85%;
-    /* Information */
-    div:last-child {
-      padding: ${space.medium};
-      h4 {
-        font-size: ${fontSize.mobileTitle};
-      }
-      span {
-        font-size: ${fontSize.default};
-      }
-      p {
-        font-size: ${fontSize.medium};
-      }
-    }
-  }
-  @media (max-width: ${mobile}) {
     width: 100%;
-    div:last-child {
-      padding: ${space.medium};
-      h4 {
-        font-size: ${fontSize.mobileTitle};
-      }
-      span {
-        font-size: ${fontSize.default};
-      }
-      p {
-        font-size: ${fontSize.medium};
-      }
-    }
   }
 `;
+
 const ImgBox = styled.div`
-  width: 75%;
+  width: 100%;
+  max-width: 1440px;
   overflow: hidden;
   margin: auto;
-  padding-top: ${space.medium};
+  padding-top: ${space.large};
 
   display: flex;
   gap: 10px;
   justify-content: space-between;
   align-items: center;
+
+  button {
+    margin: ${space.large};
+  }
 
   img {
     width: 100%;
@@ -114,12 +87,12 @@ const ImgBox = styled.div`
   }
 
   @media (max-width: ${tablet}) {
-    width: 100%;
     position: relative;
 
     /* Slider Buttons */
     button {
       position: absolute;
+      margin: 0;
     }
     button:last-child {
       right: 0;
@@ -127,8 +100,41 @@ const ImgBox = styled.div`
   }
 `;
 
+const Content = styled.div`
+  margin: 3% 5%;
+
+  h4 {
+    font-weight: 600;
+    font-size: ${fontSize.mobileTitle};
+    margin-bottom: ${space.micro};
+    letter-spacing: 1.5px;
+  }
+  span {
+    color: ${(p) => p.theme.gray};
+  }
+
+  p {
+    line-height: 1.3;
+    margin-top: ${space.large};
+    white-space: pre-line;
+  }
+
+  @media (max-width: ${tablet}) {
+    padding: ${space.medium};
+    h4 {
+      font-size: ${fontSize.mobileTitle};
+    }
+    span {
+      font-size: ${fontSize.default};
+    }
+    p {
+      font-size: ${fontSize.medium};
+    }
+  }
+`;
 const LinkBox = styled.nav`
-  margin: ${space.small} 0;
+  margin: ${space.default} 0;
+
   h5 {
     display: inline-block;
     margin-right: ${space.small};
@@ -174,7 +180,7 @@ function ProjectModal() {
   const [img, setImg] = useState(0);
   const [isPrev, setIsPrev] = useState(false);
   const [modalId, setModalId] = useRecoilState(modalState);
-  const [isOpen, setIsOpen] = useRecoilState(modalToggleState);
+  const setIsOpen = useSetRecoilState(modalToggleState);
   const [projectData, setProjectData] = useState<IProject | null>(null);
   const theme = useTheme();
 
@@ -210,73 +216,62 @@ function ProjectModal() {
     setProjectData(filter || null);
   }, [projectData]);
 
-  // Image changes every 4 seconds when Modal is opened
-  // useEffect(() => {
-  //   if (isOpen) {
-  //     const interval = setInterval(() => {
-  //       onNext();
-  //     }, 4000);
-
-  //     return () => {
-  //       clearInterval(interval); // 컴포넌트가 언마운트되기 전에 인터벌을 해제.
-  //     };
-  //   }
-  // }, [isOpen, img]);
-
   return (
-    <Wrap>
-      <XBtn onClick={onToggleModal}>
-        <FontAwesomeIcon icon={faXmark} />
-      </XBtn>
-      {projectData ? (
-        <Card>
-          <ImgBox>
-            <SliderBtn isLeft onClick={onPrev} />
-            <AnimatePresence>
-              <div>
-                <motion.img
-                  key={"image" + img}
-                  src={`${imgUrl}/works/${projectData?.images[img]}.png`}
-                  initial={{ x: isPrev ? -300 : 300, opacity: 0.5 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  exit={{ x: isPrev ? 300 : -300, opacity: 0.5 }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 120,
-                    damping: 17,
-                  }}
-                  alt="detail"
-                />
-              </div>
-            </AnimatePresence>
-            <SliderBtn isLeft={false} onClick={onNext} />
-          </ImgBox>
-          <div>
-            <h4>{projectData?.title}</h4>
-            <Line weight="1px" length="100%" color={theme.gray} />
-            <LinkBox>
-              <h5>사이트 : </h5>
-              <a href={projectData?.github} target="_blank">
-                <FontAwesomeIcon icon={faGithub} /> 깃허브
-              </a>
-              <a href={projectData?.demo} target="_blank">
-                데모
-              </a>
-            </LinkBox>
-            <span>
-              {projectData?.team} | {projectData?.techStack}
-            </span>
-            <p>{projectData?.description}</p>
-          </div>
-        </Card>
-      ) : (
-        <Error>
-          <button onClick={onToggleModal}>
-            <FontAwesomeIcon icon={faRotateLeft} />
-          </button>
-        </Error>
-      )}
-    </Wrap>
+    <Overlay>
+      <Wrap>
+        <XBtn onClick={onToggleModal}>
+          <FontAwesomeIcon icon={faXmark} />
+        </XBtn>
+        {projectData ? (
+          <Card>
+            <ImgBox>
+              <SliderBtn isLeft onClick={onPrev} />
+              <AnimatePresence>
+                <div>
+                  <motion.img
+                    key={"image" + img}
+                    src={`${imgUrl}/works/${projectData?.images[img]}.png`}
+                    initial={{ x: isPrev ? -300 : 300, opacity: 0.5 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{ x: isPrev ? 300 : -300, opacity: 0.5 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 120,
+                      damping: 17,
+                    }}
+                    alt="detail"
+                  />
+                </div>
+              </AnimatePresence>
+              <SliderBtn isLeft={false} onClick={onNext} />
+            </ImgBox>
+            <Content>
+              <h4>{projectData?.title}</h4>
+              <Line weight="1px" length="100%" color={theme.gray} />
+              <LinkBox>
+                <h5>사이트 : </h5>
+                <a href={projectData?.github} target="_blank">
+                  <FontAwesomeIcon icon={faGithub} /> 깃허브
+                </a>
+                <a href={projectData?.demo} target="_blank">
+                  데모
+                </a>
+              </LinkBox>
+              <span>
+                {projectData?.team} | {projectData?.techStack}
+              </span>
+              <p>{projectData?.description}</p>
+            </Content>
+          </Card>
+        ) : (
+          <Error>
+            <button onClick={onToggleModal}>
+              <FontAwesomeIcon icon={faRotateLeft} />
+            </button>
+          </Error>
+        )}
+      </Wrap>
+    </Overlay>
   );
 }
 
